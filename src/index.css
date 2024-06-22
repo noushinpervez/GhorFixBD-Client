@@ -148,3 +148,14 @@ body {
     color: var(--text-950);
     background: var(--background-50);
 }
+
+footer {
+    clip-path: polygon(0 0, 100% 13%, 100% 100%, 0% 100%);
+    background-color: var(--accent-100);
+}
+
+@media (max-width: 768px) {
+    footer {
+        clip-path: polygon(0 0, 100% 5%, 100% 100%, 0% 100%);
+    }
+}
