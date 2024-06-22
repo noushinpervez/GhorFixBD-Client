@@ -1,9 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
     return (
         <>
-            <Outlet></Outlet>
+            <Helmet>
+                <title>GhorFix | Home</title>
+            </Helmet>
         </>
     );
 };
