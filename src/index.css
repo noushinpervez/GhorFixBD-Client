@@ -6,29 +6,29 @@
 
 @layer base {
     :root {
-        --text-50: #f5f0f0;
-        --text-100: #ebe0e0;
-        --text-200: #d6c2c2;
-        --text-300: #c2a3a3;
-        --text-400: #ad8585;
-        --text-500: #996666;
-        --text-600: #7a5252;
-        --text-700: #5c3d3d;
-        --text-800: #3d2929;
-        --text-900: #1f1414;
-        --text-950: #0f0a0a;
+        --text-50: #fce8e9;
+        --text-100: #fad1d4;
+        --text-200: #f5a3a9;
+        --text-300: #f0757d;
+        --text-400: #eb4752;
+        --text-500: #e61927;
+        --text-600: #b8141f;
+        --text-700: #8a0f17;
+        --text-800: #5c0a10;
+        --text-900: #2e0508;
+        --text-950: #170304;
 
-        --background-50: #f6eeee;
-        --background-100: #eedddd;
-        --background-200: #ddbbbb;
-        --background-300: #cc9999;
-        --background-400: #bb7777;
-        --background-500: #aa5555;
-        --background-600: #884444;
-        --background-700: #663333;
-        --background-800: #442222;
-        --background-900: #221111;
-        --background-950: #110909;
+        --background-50: #f2f2f2;
+        --background-100: #e6e6e6;
+        --background-200: #cccccc;
+        --background-300: #b3b3b3;
+        --background-400: #999999;
+        --background-500: #808080;
+        --background-600: #666666;
+        --background-700: #4d4d4d;
+        --background-800: #333333;
+        --background-900: #1a1a1a;
+        --background-950: #0d0d0d;
 
         --primary-50: #f2f2f2;
         --primary-100: #e6e6e6;
@@ -81,17 +81,17 @@
         --text-900: #ebe0e0;
         --text-950: #f5f0f0;
 
-        --background-50: #120808;
-        --background-100: #240f0f;
-        --background-200: #471f1f;
-        --background-300: #6b2e2e;
-        --background-400: #8f3d3d;
-        --background-500: #b34d4d;
-        --background-600: #c27070;
-        --background-700: #d19494;
-        --background-800: #e0b8b8;
-        --background-900: #f0dbdb;
-        --background-950: #f7eded;
+        --background-50: #0d0d0d;
+        --background-100: #1a1a1a;
+        --background-200: #333333;
+        --background-300: #4d4d4d;
+        --background-400: #666666;
+        --background-500: #808080;
+        --background-600: #999999;
+        --background-700: #b3b3b3;
+        --background-800: #cccccc;
+        --background-900: #e6e6e6;
+        --background-950: #f2f2f2;
 
         --primary-50: #0d0d0d;
         --primary-100: #1a1a1a;
@@ -140,22 +140,19 @@ h1 {
     font-family: "Croissant One", serif;
 }
 
-p {
-    font-family: "Poppins", sans-serif;
-}
-
 body {
     color: var(--text-950);
     background: var(--background-50);
+    font-family: "Poppins", sans-serif;
 }
 
 footer {
-    clip-path: polygon(0 0, 100% 13%, 100% 100%, 0% 100%);
-    background-color: var(--accent-100);
+    clip-path: polygon(0 9%, 100% 0, 100% 100%, 0% 100%);
+    background-color: var(--background-200);
 }
 
 @media (max-width: 768px) {
     footer {
-        clip-path: polygon(0 0, 100% 5%, 100% 100%, 0% 100%);
+        clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
     }
 }
