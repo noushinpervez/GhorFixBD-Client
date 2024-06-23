@@ -3,11 +3,13 @@ import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import BookingModal from "./BookingModal";
 
 const SingleServiceDetails = () => {
     const [service, setService] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
 
@@ -39,14 +41,14 @@ const SingleServiceDetails = () => {
                 <title>GhorFix | Single Service Details</title>
             </Helmet>
 
-            <div className="container my-16 mx-auto px-2 md:px-4">
+            <div className="container my-8 lg:my-16 mx-auto px-2 md:px-4">
                 <div className="flex flex-col md:flex-row -mx-4">
-                    <div className="md:w-1/5 md:h-auto px-4">
-                        <div className="mb-4">
-                            <img className="w-full h-full object-cover rounded-3xl" src={ service.imgURL } alt={ `${service.serviceName} logo` } />
+                    <div className="md:w-1/4 md:h-auto px-4">
+                        <div className="mb-4 flex justify-center">
+                            <img className="md:w-full md:h-full h-56 object-cover object-center rounded-3xl" src={ service.imgURL } alt={ `${service.serviceName} logo` } />
                         </div>
                         <div className="mb-4 w-full px-2">
-                            <button className="mt-2 bg-primary-900 text-text-50 font-medium px-4 py-2 rounded-full flex items-center w-full justify-center">
+                            <button onClick={ () => setIsModalOpen(true) } className="mt-2 bg-primary-900 text-text-50 font-medium px-4 py-2 rounded-full flex items-center w-full justify-center">
                                 Book Now
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -71,6 +73,7 @@ const SingleServiceDetails = () => {
                     </div>
                 </div>
             </div>
+            <BookingModal service={ service } isOpen={ isModalOpen } onClose={ () => setIsModalOpen(false) } />
         </>
     );
 };

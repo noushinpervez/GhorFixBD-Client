@@ -145,14 +145,3 @@ body {
     background: var(--background-50);
     font-family: "Poppins", sans-serif;
 }
-
-footer {
-    clip-path: polygon(0 9%, 100% 0, 100% 100%, 0% 100%);
-    background-color: var(--secondary-100);
-}
-
-@media (max-width: 768px) {
-    footer {
-        clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
-    }
-}
