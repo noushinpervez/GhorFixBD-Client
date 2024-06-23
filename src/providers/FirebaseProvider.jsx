@@ -35,7 +35,7 @@ const FirebaseProvider = ({ children }) => {
 
     const updateUserProfile = async (name, image) => {
         const currentUser = auth.currentUser;
-        const photoURL = image || "https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png";
+        const photoURL = image || "https://www.uab.edu/humanresources/home/images/RecordsAdmin/RecordsIcon_Oracle_SelfService.png";
         await updateProfile(currentUser, { displayName: name, photoURL: photoURL });
         setUser({ ...currentUser, displayName: name, photoURL: photoURL });
     };

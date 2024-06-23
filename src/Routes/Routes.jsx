@@ -10,29 +10,30 @@ import ManageService from "../pages/Dashboard/ManageService/ManageService";
 import BookedServices from "../pages/Dashboard/BookedServices/BookedServices";
 import PrivateRoute from "./PrivateRoute";
 import ServiceToDo from "../pages/Dashboard/ServiceToDo/ServiceToDo";
+import SingleServiceDetails from "../pages/SingleServiceDetails/SingleServiceDetails";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root></Root>,
-        errorElement: <ErrorPage></ErrorPage>,
+        element: <Root />,
+        errorElement: <ErrorPage />,
 
         children: [
             {
                 path: "/",
-                element: <Home></Home>,
+                element: <Home />,
             },
             {
                 path: "login",
-                element: <Login></Login>,
+                element: <Login />,
             },
             {
                 path: "signup",
-                element: <SignUp></SignUp>,
+                element: <SignUp />,
             },
             {
                 path: "services",
-                element: <Services></Services>,
+                element: <Services />,
             },
             {
                 path: "dashboard/add-service",
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
             {
                 path: "dashboard/manage-service",
                 element: <PrivateRoute>
-                    <ManageService/>
+                    <ManageService />
                 </PrivateRoute>,
             },
             {
@@ -57,6 +58,12 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <ServiceToDo />
                 </PrivateRoute>,
+            },
+            {
+                path: "services/:id",
+                element: <PrivateRoute>
+                    <SingleServiceDetails />
+                </PrivateRoute>
             },
         ],
     },

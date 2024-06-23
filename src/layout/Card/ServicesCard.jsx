@@ -1,17 +1,26 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Card = ({ service }) => {
-    const { _id, imgURL, serviceName, description, providerName, providerImage, price } = service;
+const ServicesCard = ({ service }) => {
+    const { _id, imgURL, serviceName, description, providerName, providerImage, price, serviceArea } = service;
 
     return (
         <div className="w-full flex flex-col md:flex-row gap-3 p-5 rounded-3xl border-b-4 border-secondary-700 bg-gradient-to-tl from-background-50 to-accent-200 shadow-lg justify-center md:items-center">
             {/* Service Image */ }
-            <img className="h-48 object-cover rounded-2xl" src={ imgURL } alt={ serviceName } />
+            <img className="h-48 lg:w-96 object-cover rounded-2xl" src={ imgURL } alt={ serviceName } />
 
-            <div className="flex flex-col gap-2 lg:w-5/6">
-                {/* Service Name */ }
-                <h3 className="font-bold text-xl">{ serviceName }</h3>
+            <div className="flex flex-col gap-2 w-5/6">
+                <div className="flex flex-col lg:flex-row gap-3 justify-between">
+                    {/* Service Name */ }
+                    <h3 className="font-bold text-xl">{ serviceName }</h3>
+
+                    {/* Service Location */ }
+                    <div className="flex gap-1 text-sm items-center text-slate-600">
+                        <span className="material-symbols-outlined">
+                            pin_drop
+                        </span><p>{ serviceArea }</p>
+                    </div>
+                </div>
 
                 {/* Service Description */ }
                 <p className="text-slate-600 text-ellipsis line-clamp-3 lg:line-clamp-2 lg:text-justify text-sm">
@@ -33,7 +42,7 @@ const Card = ({ service }) => {
 
                 {/* Service Provider Image & Name */ }
                 <div className="flex items-center gap-1 justify-end -mr-2">
-                    <img className="w-4 h-4 rounded-full object-cover" src={ providerImage } alt={ providerName } />
+                    <img className="w-6 h-6 rounded-full object-cover" src={ providerImage } alt={ providerName } />
                     <span className="text-slate-600 text-xs">{ providerName }</span>
                 </div>
             </div>
@@ -41,8 +50,8 @@ const Card = ({ service }) => {
     );
 };
 
-Card.propTypes = {
+ServicesCard.propTypes = {
     service: PropTypes.object.isRequired,
 };
 
-export default Card;
+export default ServicesCard;

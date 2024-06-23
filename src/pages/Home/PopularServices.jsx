@@ -12,7 +12,7 @@ const PopularServices = () => {
     }
 
     if (error) {
-        return <div>Error: { error }</div>;
+        return <div className="text-red-400 text-2xl font-semibold flex items-center justify-center">Error: { error }</div>;
     }
 
     return (

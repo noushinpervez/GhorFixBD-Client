@@ -48,7 +48,7 @@ const Header = () => {
             {/* Mobile menu button and user icon */ }
             <div className="lg:hidden flex items-center gap-2">
                 <div className={ `group relative ${user ? "block" : "hidden"}` }>
-                    <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-primary-500" src={ user?.photoURL || "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" } />
+                    <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-secondary-500" src={ user?.photoURL || "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" } />
                     <div className="absolute top-0 flex flex-col items-center hidden mt-8 group-hover:flex">
                         <div className="w-3 h-3 -mb-2 rotate-45 bg-black"></div>
                         <span className="relative z-10 p-2 text-xs leading-none whitespace-nowrap bg-secondary-300 shadow-lg">{ user?.displayName }</span>
@@ -95,7 +95,7 @@ const Header = () => {
             {/* User icon and login/logout button */ }
             <div className="hidden lg:flex gap-4 justify-center items-center">
                 <div className={ `group relative ${user ? "block" : "hidden"}` }>
-                    <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-primary-500" src={ user?.photoURL || "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" } />
+                    <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-secondary-500" src={ user?.photoURL || "https://www.uab.edu/humanresources/home/images/RecordsAdmin/RecordsIcon_Oracle_SelfService.png" } />
                     <div className="absolute top-0 flex-col items-center hidden mt-8 group-hover:flex">
                         <div className="w-3 h-3 -mb-2 rotate-45 bg-black"></div>
                         <span className="relative p-2 text-xs leading-none whitespace-nowrap bg-secondary-300 shadow-lg">{ user?.displayName }</span>
