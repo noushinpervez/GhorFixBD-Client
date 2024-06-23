@@ -89,14 +89,14 @@ const Login = () => {
                                     </button>
                                 </div>
 
-                                <form onSubmit={ handleSubmit(onSubmit) } className="my-12 border-b border-accent-200 text-center">
+                                <div className="my-12 border-b border-accent-200 text-center">
                                     <div
                                         className="leading-none px-2 inline-block text-sm tracking-wide font-medium bg-bg transform translate-y-1/2">
                                         or login with e-mail
                                     </div>
-                                </form>
+                                </div>
 
-                                <div className="mx-auto max-w-xs">
+                                <form className="mx-auto max-w-xs" onSubmit={ handleSubmit(onSubmit) }>
                                     <input { ...register("email", { required: "Email is required*" }) }
                                         className="w-full px-8 py-4 rounded-full font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400"
                                         type="email" placeholder="Email" />
@@ -138,7 +138,7 @@ const Login = () => {
                                             <button className="bg-secondary-500 rounded-full py-2 px-5 font-semibold duration-300">Sign Up</button>
                                         </Link>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

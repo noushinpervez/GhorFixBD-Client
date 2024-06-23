@@ -24,6 +24,9 @@ const Services = () => {
             <section className="container my-16 mx-auto px-2 md:px-4">
                 <Title title="All Services" />
 
+                <div className="md:px-3 my-6 flex lg:px-6">
+                    <h1 className="text-2xl">Total Services: { data.length }</h1>
+                </div>
                 {/* Services cards */ }
                 <div className="grid grid-cols-1 gap-4 md:px-3 lg:px-6 mb-6">
                     {

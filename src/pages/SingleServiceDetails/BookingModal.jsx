@@ -130,9 +130,9 @@ const BookingModal = ({ service, isOpen, onClose }) => {
 };
 
 BookingModal.propTypes = {
-    service: PropTypes.object.isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
+    service: PropTypes.object,
+    isOpen: PropTypes.bool,
+    onClose: PropTypes.func,
 };
 
 export default BookingModal;
