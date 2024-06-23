@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import Swal from "sweetalert2";
+import Toast from "../../components/Toast";
 
 const Login = () => {
     const { signInUser, googleLogin } = useAuth();
@@ -13,20 +13,6 @@ const Login = () => {
     const location = useLocation();
 
     const from = location?.state || "/";
-
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        background: "var(--accent-100)",
-        iconColor: "var(--primary-500)",
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
 
     const onSubmit = async (data) => {
         const { email, password } = data;
@@ -40,7 +26,6 @@ const Login = () => {
             navigate(from);
             reset();
         } catch (error) {
-            console.error(error);
             setError("Invalid email or password. Please try again!");
         }
     };
@@ -57,7 +42,6 @@ const Login = () => {
                 reset();
             }
         } catch (error) {
-            console.error(error);
             setError("Failed to sign in with Google. Please try again later.");
         }
     };
@@ -68,7 +52,7 @@ const Login = () => {
                 <title>GhorFix | Sign in</title>
             </Helmet>
             <div className="min-h-screen bg-background flex justify-center">
-                <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-lg flex justify-center flex-1 flex-row-reverse bg-accent-100">
+                <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-3xl flex justify-center flex-1 flex-row-reverse bg-accent-100">
                     <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 my-auto">
                         <div className="flex justify-center gap-2 items-center">
                             <img src="./logo.png"
@@ -82,7 +66,7 @@ const Login = () => {
                             <div className="w-full flex-1 mt-8">
                                 <div className="flex flex-col items-center">
                                     <button
-                                        className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-secondary-400 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline" onClick={ () => handleSocialLogin(googleLogin) }>
+                                        className="w-full max-w-xs font-bold shadow-sm rounded-full py-3 bg-secondary-400 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline" onClick={ () => handleSocialLogin(googleLogin) }>
                                         <div className="p-2 rounded-full">
                                             <svg className="w-5" viewBox="0 0 533.5 544.3">
                                                 <path
@@ -114,17 +98,17 @@ const Login = () => {
 
                                 <div className="mx-auto max-w-xs">
                                     <input { ...register("email", { required: "Email is required*" }) }
-                                        className="w-full px-8 py-4 rounded-lg font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400"
+                                        className="w-full px-8 py-4 rounded-full font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400"
                                         type="email" placeholder="Email" />
                                     { errors.email && <p className="mt-1 text-sm text-red-500 italic">{ errors.email.message }</p> }
                                     <input { ...register("password", { required: "Password is required*" }) }
-                                        className="w-full px-8 py-4 rounded-lg font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
+                                        className="w-full px-8 py-4 rounded-full font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
                                         type="password" placeholder="Password" />
                                     { errors.password && (
                                         <p className="mt-1 text-sm text-red-500 italic">{ errors.password.message }</p>
                                     ) }
                                     <button type="submit"
-                                        className="mt-5 tracking-wide font-semibold bg-primary-950 text-text-50 w-full py-4 rounded-lg hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                        className="mt-5 tracking-wide font-semibold bg-primary-950 text-text-50 w-full py-4 rounded-full hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                         <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2"
                                             strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
@@ -139,11 +123,11 @@ const Login = () => {
                                         <p className="mt-2 text-sm text-red-500 italic">{ error }</p>
                                     ) }
                                     <p className="mt-6 text-xs text-gray-500 text-center">
-                                        I agree to abide by the{ ' ' }
+                                        I agree to abide by the{ " " }
                                         <a href="#" className="border-b border-gray-500 border-dotted">
                                             Terms of Service
-                                        </a>{ ' ' }
-                                        and{ ' ' }
+                                        </a>{ " " }
+                                        and{ " " }
                                         <a href="#" className="border-b border-gray-500 border-dotted">
                                             Privacy Policy
                                         </a>
@@ -151,7 +135,7 @@ const Login = () => {
                                     <div className="mt-4 text-sm flex justify-between items-center">
                                         <p>Do not have an account?</p>
                                         <Link to="/signup">
-                                            <button className="bg-secondary-500 rounded-lg py-2 px-5 font-semibold duration-300">Sign Up</button>
+                                            <button className="bg-secondary-500 rounded-full py-2 px-5 font-semibold duration-300">Sign Up</button>
                                         </Link>
                                     </div>
                                 </div>

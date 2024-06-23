@@ -10,7 +10,7 @@ const FormInput = ({ label, value, onChange, name, type = "text", required = fal
                 onChange={ onChange }
                 name={ name }
                 required={ required }
-                className="mt-1 block w-full border border-gray-500 rounded shadow focus:border-primary-500 focus:ring focus:ring-primary-500 p-2 bg-accent-100 text-sm"
+                className="mt-1 block w-full border border-gray-500 rounded shadow focus:border-0 focus:outline-0 focus:ring focus:ring-secondary-700 p-2 bg-secondary-50 text-sm"
             />
         </div>
     );

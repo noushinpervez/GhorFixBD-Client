@@ -1,7 +1,9 @@
 import { useRef } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const Banner = () => {
     const carouselRef = useRef(null);
+    const { user } = useAuth();
 
     const scrollPrev = () => {
         if (carouselRef.current) {
@@ -22,7 +24,7 @@ const Banner = () => {
     };
 
     return (
-        <section className="relative lg:mt-4">
+        <section className="relative lg:mt-6">
             <div ref={ carouselRef } className="carousel max-w-full flex overflow-hidden">
                 {/* Carousel item 1 */ }
                 <div className="carousel-item flex-shrink-0 w-full relative">
@@ -37,16 +39,19 @@ const Banner = () => {
                         <div className="max-w-full flex-shrink-0 text-center lg:mx-0 lg:max-w-3xl lg:pt-8">
                             <h1 className="lg:text-5xl font-bold tracking-tight text-white text-2xl">
                                 Home Repair Services
-                                <span className="text-sky-500"> Near You</span>
+                                <span className="text-secondary-700"> Near You</span>
                             </h1>
                             <p className="mt-6 lg:text-lg lg:leading-8 text-gray-300">
                                 Receive no-obligation quotes from reviewed, rated & trusted Handymen in minutes.
                             </p>
                             <div className="mt-5 flex items-center justify-center gap-x-6">
-                                <a href="/signup"
-                                    className="rounded-lg bg-sky-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
-                                    rel="noreferrer">Try Now →
-                                </a>
+                                {
+                                    user ? <></> :
+                                        <a href="/signup"
+                                            className="rounded-full bg-secondary-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-secondary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
+                                            rel="noreferrer">Sign up →
+                                        </a>
+                                }
                             </div>
                         </div>
                     </div>
@@ -66,7 +71,7 @@ const Banner = () => {
                         <div className="max-w-full flex-shrink-0 text-center lg:mx-0 lg:max-w-3xl lg:pt-8">
                             <h1 className="lg:text-5xl font-bold tracking-tight text-white text-2xl">
                                 Your Personal
-                                <span className="text-sky-500"> Assistant</span>
+                                <span className="text-secondary-700"> Assistant</span>
                             </h1>
                             <p className="mt-6 lg:text-lg lg:leading-8 text-gray-300">
                                 One-stop solution for your services. Order any service, anytime.
@@ -88,7 +93,7 @@ const Banner = () => {
                         <div className="max-w-full flex-shrink-0 text-center lg:mx-0 lg:max-w-3xl lg:pt-8">
                             <h1 className="lg:text-5xl font-bold tracking-tight text-white text-2xl">
                                 Solution to your
-                                <span className="text-sky-500"> Needs</span>
+                                <span className="text-secondary-700"> Needs</span>
                             </h1>
                             <p className="mt-6 lg:text-lg lg:leading-8 text-gray-300">
                                 Any Service, Any Time, Anywhere.

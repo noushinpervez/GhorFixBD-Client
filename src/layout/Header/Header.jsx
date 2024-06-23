@@ -27,9 +27,11 @@ const Header = () => {
 
     const activeLinkStyle = {
         transition: "all 0.3s ease-in-out",
-        color: "var(--text-50)",
-        background: "var(--primary-900)",
+        color: "var(--secondart-800)",
+        background: "var(--secondary-100)",
         outline: "none",
+        borderWidth: "1px",
+        borderColor: "var(--secondary-500)",
     };
 
     return (
@@ -45,11 +47,11 @@ const Header = () => {
 
             {/* Mobile menu button and user icon */ }
             <div className="lg:hidden flex items-center gap-2">
-                <div className={ `group relative ${user ? 'block' : 'hidden'}` }>
+                <div className={ `group relative ${user ? "block" : "hidden"}` }>
                     <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-primary-500" src={ user?.photoURL || "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" } />
                     <div className="absolute top-0 flex flex-col items-center hidden mt-8 group-hover:flex">
                         <div className="w-3 h-3 -mb-2 rotate-45 bg-black"></div>
-                        <span className="relative z-10 p-2 text-xs leading-none whitespace-nowrap bg-primary-300 shadow-lg">{ user?.displayName }</span>
+                        <span className="relative z-10 p-2 text-xs leading-none whitespace-nowrap bg-secondary-300 shadow-lg">{ user?.displayName }</span>
                     </div>
                 </div>
                 <button className="navbar-burger flex items-center text-primary-inverse p-3" onClick={ toggleMenu }>
@@ -63,26 +65,26 @@ const Header = () => {
             {/* Desktop menu */ }
             <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
                 {/* Menu items */ }
-                <li><NavLink to="/" className="text-sm hover:text-gray-500 px-2 py-1 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Home</NavLink></li>
-                <li><NavLink to="/services" className="text-sm hover:text-gray-500 px-2 py-1 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Services</NavLink></li>
+                <li><NavLink to="/" className="text-sm hover:text-gray-500 px-3 py-1 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Home</NavLink></li>
+                <li><NavLink to="/services" className="text-sm hover:text-gray-500 px-3 py-1 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Services</NavLink></li>
                 <div className="relative">
-                    <button onClick={ toggleDropdown } className="text-sm hover:text-gray-500 focus:text-blue-600 px-2 py-1 rounded-lg flex justify-center items-center gap-1">Dashboard<span className="material-symbols-outlined">
+                    <button onClick={ toggleDropdown } className={ `text-sm hover:text-gray-500 focus:text-secondary-600 px-3 py-1 rounded-full flex justify-center items-center gap-1 ${user ? "block" : "hidden"}` }>Dashboard<span className="material-symbols-outlined">
                         chevron_right
                     </span></button>
                     { isDropdownOpen && (
-                        <ul className="absolute -top-4 left-full w-80 bg-background-50 border border-gray-200 rounded-md shadow-lg z-50">
+                        <ul className={ `absolute -top-2 left-full w-80 bg-secondary-50 border border-gray-200 rounded-3xl shadow-lg z-50 ${user ? "block" : "hidden"}` }>
                             <div className="flex flex-wrap">
                                 <li className="w-1/2">
-                                    <NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink>
+                                    <NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink>
                                 </li>
                                 <li className="w-1/2">
-                                    <NavLink to="/dashboard/manage-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Manage Service</NavLink>
+                                    <NavLink to="/dashboard/manage-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Manage Service</NavLink>
                                 </li>
                                 <li className="w-1/2">
-                                    <NavLink to="/dashboard/booked-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Booked Services</NavLink>
+                                    <NavLink to="/dashboard/booked-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Booked Services</NavLink>
                                 </li>
                                 <li className="w-1/2">
-                                    <NavLink to="/dashboard/service-to-do" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Service To-Do</NavLink>
+                                    <NavLink to="/dashboard/service-to-do" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Service To-Do</NavLink>
                                 </li>
                             </div>
                         </ul>
@@ -92,22 +94,22 @@ const Header = () => {
 
             {/* User icon and login/logout button */ }
             <div className="hidden lg:flex gap-4 justify-center items-center">
-                <div className={ `group relative ${user ? 'block' : 'hidden'}` }>
+                <div className={ `group relative ${user ? "block" : "hidden"}` }>
                     <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-primary-500" src={ user?.photoURL || "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" } />
                     <div className="absolute top-0 flex-col items-center hidden mt-8 group-hover:flex">
                         <div className="w-3 h-3 -mb-2 rotate-45 bg-black"></div>
-                        <span className="relative p-2 text-xs leading-none whitespace-nowrap bg-primary-300 shadow-lg">{ user?.displayName }</span>
+                        <span className="relative p-2 text-xs leading-none whitespace-nowrap bg-secondary-300 shadow-lg">{ user?.displayName }</span>
                     </div>
                 </div>
                 { user ? (
-                    <button onClick={ handleLogout } className="py-2 px-6 bg-primary-950 hover:bg-primary-900 text-text-50 text-sm text-gray-900 font-bold rounded-xl transition duration-200">Logout</button>
+                    <button onClick={ handleLogout } className="py-2 px-6 bg-primary-950 hover:bg-primary-900 text-text-50 text-sm text-gray-900 font-bold rounded-full transition duration-200">Logout</button>
                 ) : (
-                    <Link to="/login" className="py-2 px-6 bg-primary-950 hover:bg-primary-900 text-text-50 text-sm text-gray-900 font-bold rounded-xl transition duration-200">Sign In</Link>
+                    <Link to="/login" className="py-2 px-6 bg-primary-950 hover:bg-primary-900 text-text-50 text-sm text-gray-900 font-bold rounded-full transition duration-200">Sign In</Link>
                 ) }
             </div>
 
             {/* Mobile menu */ }
-            <div className={ `navbar-menu fixed z-10 inset-0 ${isMenuOpen ? '' : 'hidden'}` }>
+            <div className={ `navbar-menu fixed z-10 inset-0 ${isMenuOpen ? "" : "hidden"}` }>
                 <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
                 <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-background-50 border-r overflow-y-auto">
                     {/* Mobile menu content */ }
@@ -128,17 +130,17 @@ const Header = () => {
                     <div>
                         <ul>
                             <li className="mb-1">
-                                <NavLink className="block p-4 text-sm font-semibold text-gray-500 hover:text-blue-600 rounded" to="/" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Home</NavLink>
-                                <NavLink className="block p-4 text-sm font-semibold text-gray-500 hover:text-blue-600 rounded" to="/services" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Services</NavLink>
-                                <NavLink className="p-4 text-sm font-semibold text-gray-500 hover:text-blue-600 focus:text-blue-600 rounded flex items-center gap-1" onClick={ toggleDropdown }>Dashboard<span className="material-symbols-outlined">
+                                <NavLink className="block p-4 text-sm font-semibold text-gray-500 hover:text-secondary-600 rounded-full" to="/" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Home</NavLink>
+                                <NavLink className="block p-4 text-sm font-semibold text-gray-500 hover:text-secondary-600 rounded-full" to="/services" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Services</NavLink>
+                                <NavLink className={ `p-4 text-sm font-semibold text-gray-500 hover:text-secondary-600 focus:text-secondary-600 rounded-full flex items-center gap-1 ${user ? "block" : "hidden"}` } onClick={ toggleDropdown }>Dashboard<span className="material-symbols-outlined">
                                     chevron_right
                                 </span></NavLink>
                                 { isDropdownOpen && (
-                                    <ul className="mt-2">
-                                        <li><NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink></li>
-                                        <li><NavLink to="/dashboard/manage-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Manage Service</NavLink></li>
-                                        <li><NavLink to="/dashboard/booked-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Booked Services</NavLink></li>
-                                        <li><NavLink to="/dashboard/service-to-do" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-300 rounded-lg" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Service To-Do</NavLink></li>
+                                    <ul className={ `${user ? "block" : "hidden"}` }>
+                                        <li><NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink></li>
+                                        <li><NavLink to="/dashboard/manage-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Manage Service</NavLink></li>
+                                        <li><NavLink to="/dashboard/booked-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Booked Services</NavLink></li>
+                                        <li><NavLink to="/dashboard/service-to-do" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Service To-Do</NavLink></li>
                                     </ul>
                                 ) }
                             </li>
@@ -148,9 +150,9 @@ const Header = () => {
                     <div className="mt-auto">
                         <div className="pt-6">
                             { user ? (
-                                <button onClick={ handleLogout } className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-text-50 font-semibold bg-primary-950 hover:bg-primary-900 rounded-xl w-full">Logout</button>
+                                <button onClick={ handleLogout } className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-text-50 font-semibold bg-primary-950 hover:bg-primary-900 rounded-full w-full">Logout</button>
                             ) : (
-                                <Link className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-text-50 font-semibold bg-primary-950 hover:bg-primary-900 rounded-xl" to="/login">Sign In</Link>
+                                <Link className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-text-50 font-semibold bg-primary-950 hover:bg-primary-900 rounded-full" to="/login">Sign In</Link>
                             ) }
                         </div>
                     </div>

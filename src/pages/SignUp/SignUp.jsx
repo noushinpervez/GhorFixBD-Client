@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import Swal from "sweetalert2";
+import Toast from "../../components/Toast";
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useAuth();
@@ -12,20 +12,6 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const from = "/";
-
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        background: "var(--accent-100)",
-        iconColor: "var(--primary-500)",
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
 
     const onSubmit = async (data) => {
         const { fullName, photoURL, email, password } = data;
@@ -43,7 +29,6 @@ const SignUp = () => {
             if (error.code === "auth/email-already-in-use") {
                 setError("Email is already in use. Please use a different email.");
             } else {
-                console.error(error);
                 setError("Failed to sign up. Please try again later.");
             }
         }
@@ -55,7 +40,7 @@ const SignUp = () => {
                 <title>GhorFix | Sign Up</title>
             </Helmet>
             <div className="min-h-screen flex justify-center">
-                <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-lg flex justify-center flex-1 bg-accent-100">
+                <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-3xl flex justify-center flex-1 bg-accent-100">
                     <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 my-auto">
                         <div className="flex justify-center gap-2 items-center">
                             <img src="./logo.png"
@@ -79,7 +64,7 @@ const SignUp = () => {
                                                 hasTwoWords: value => value.trim().split(" ").length >= 2 || "Full name must contain at least two words*"
                                             }
                                         }) }
-                                        className="w-full px-8 py-4 rounded-lg font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400"
+                                        className="w-full px-8 py-4 rounded-full font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400"
                                         type="text" placeholder="First and Last Name" />
                                     { errors.fullName && <p className="mt-1 text-sm text-red-500 italic">{ errors.fullName.message }</p> }
                                     <input
@@ -90,7 +75,7 @@ const SignUp = () => {
                                                 message: "Enter a valid image URL*"
                                             }
                                         }) }
-                                        className="w-full px-8 py-4 rounded-lg font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
+                                        className="w-full px-8 py-4 rounded-full font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
                                         type="url" placeholder="Photo URL" />
                                     { errors.photoURL && <p className="mt-1 text-sm text-red-500 italic">{ errors.photoURL.message }</p> }
                                     <input
@@ -101,7 +86,7 @@ const SignUp = () => {
                                                 message: "Enter a valid email address*"
                                             }
                                         }) }
-                                        className="w-full px-8 py-4 rounded-lg font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
+                                        className="w-full px-8 py-4 rounded-full font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
                                         type="email" placeholder="Email" />
                                     { errors.email && <p className="mt-1 text-sm text-red-500 italic">{ errors.email.message }</p> }
                                     <input
@@ -114,13 +99,13 @@ const SignUp = () => {
                                                 hasSpecialCharacter: value => /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character*"
                                             }
                                         }) }
-                                        className="w-full px-8 py-4 rounded-lg font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
+                                        className="w-full px-8 py-4 rounded-full font-medium bg-secondary-50 border border-primary-200 placeholder-gray-500 text-sm focus:outline-none focus:border-primary-400 mt-5"
                                         type="password" placeholder="Password" />
                                     { errors.password && (
                                         <p className="mt-1 text-sm text-red-500 italic">{ errors.password.message }</p>
                                     ) }
                                     <button type="submit"
-                                        className="mt-5 tracking-wide font-semibold bg-primary-950 text-text-50 w-full py-4 rounded-lg hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                        className="mt-5 tracking-wide font-semibold bg-primary-950 text-text-50 w-full py-4 rounded-full hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                         <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2"
                                             strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
@@ -135,11 +120,11 @@ const SignUp = () => {
                                         <p className="mt-2 text-sm text-red-500 italic">{ error }</p>
                                     ) }
                                     <p className="mt-6 text-xs text-gray-500 text-center">
-                                        I agree to abide by the{ ' ' }
+                                        I agree to abide by the{ " " }
                                         <a href="#" className="border-b border-gray-500 border-dotted">
                                             Terms of Service
-                                        </a>{ ' ' }
-                                        and{ ' ' }
+                                        </a>{ " " }
+                                        and{ " " }
                                         <a href="#" className="border-b border-gray-500 border-dotted">
                                             Privacy Policy
                                         </a>
@@ -147,7 +132,7 @@ const SignUp = () => {
                                     <div className="mt-4 text-sm flex justify-between items-center">
                                         <p>Already have an account?</p>
                                         <Link to="/login">
-                                            <button className="bg-secondary-500 rounded-lg py-2 px-5 font-semibold duration-300">Login</button>
+                                            <button className="bg-secondary-500 rounded-full py-2 px-5 font-semibold duration-300">Login</button>
                                         </Link>
                                     </div>
                                 </form>

@@ -29,7 +29,6 @@ const AddServiceForm = ({
                 value={ price }
                 onChange={ onChange }
                 name="price"
-                type="number"
             />
             <FormInput
                 label="Service Area"
@@ -46,7 +45,7 @@ const AddServiceForm = ({
                     type="textarea"
                 />
             </div>
-            <button type="submit" className="tracking-wide font-semibold bg-primary-950 text-text-50 px-8 py-4 rounded-lg hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none w-fit">
+            <button type="submit" className="tracking-wide font-semibold bg-primary-950 text-text-50 px-8 py-4 rounded-full hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none w-fit">
                 Add Service
             </button>
         </form>

@@ -3,9 +3,14 @@ import { Helmet } from "react-helmet-async";
 import Title from "../../../components/Title";
 import AddServiceForm from "./AddServiceForm";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Toast from "../../../components/Toast";
+import Loading from "../../../components/Loading";
 
 const AddService = () => {
     const { user } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         imgURL: "",
         serviceName: "",
@@ -22,7 +27,7 @@ const AddService = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const serviceData = {
             ...formData,
@@ -30,18 +35,36 @@ const AddService = () => {
             providerImage: user.photoURL,
             providerName: user.displayName,
         };
-        
-        console.log("Service Data:", serviceData);
-      
-        setFormData({
-            imgURL: "",
-            serviceName: "",
-            price: "",
-            serviceArea: "",
-            description: "",
-        });
+
+        setLoading(true);
+        try {
+            await axiosPublic.post("/add-service", serviceData);
+
+            Toast.fire({
+                icon: "success",
+                title: "Service added successfully"
+            });
+
+            setFormData({
+                imgURL: "",
+                serviceName: "",
+                price: "",
+                serviceArea: "",
+                description: "",
+            });
+        } catch (error) {
+            Toast.fire({
+                icon: "error",
+                title: "Failed to add service"
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
+    if (loading) {
+        <Loading />;
+    }
     return (
         <>
             <Helmet>
