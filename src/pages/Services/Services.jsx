@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet-async";
+
 const Services = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <Helmet>
+                <title>GhorFix | Services</title>
+            </Helmet>
+        </>
     );
 };
 

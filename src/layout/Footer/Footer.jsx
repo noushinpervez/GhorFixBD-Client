@@ -14,7 +14,7 @@ const Footer = () => {
                         </Link>
                         <div className="mt-6 lg:max-w-sm text-sm text-gray-500">
                             <p>GhorFix provide expert repair services for home appliances and electronics. Fast, reliable, and customer-focused.</p>
-                            <p className="mt-4">GhorFix – Reliable repairs, exceptional service.</p>
+                            <p className="mt-4">Reliable repairs, exceptional service.</p>
                         </div>
                     </div>
 

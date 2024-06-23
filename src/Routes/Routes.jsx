@@ -5,8 +5,11 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Services from "../pages/Services/Services";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import AddService from "../pages/Dashboard/AddService/AddService";
+import ManageService from "../pages/Dashboard/ManageService/ManageService";
+import BookedServices from "../pages/Dashboard/BookedServices/BookedServices";
 import PrivateRoute from "./PrivateRoute";
+import ServiceToDo from "../pages/Dashboard/ServiceToDo/ServiceToDo";
 
 export const router = createBrowserRouter([
     {
@@ -32,9 +35,27 @@ export const router = createBrowserRouter([
                 element: <Services></Services>,
             },
             {
-                path: "dashboard",
+                path: "dashboard/add-service",
                 element: <PrivateRoute>
-                    <Dashboard />
+                    <AddService />
+                </PrivateRoute>,
+            },
+            {
+                path: "dashboard/manage-service",
+                element: <PrivateRoute>
+                    <ManageService/>
+                </PrivateRoute>,
+            },
+            {
+                path: "dashboard/booked-services",
+                element: <PrivateRoute>
+                    <BookedServices />
+                </PrivateRoute>,
+            },
+            {
+                path: "dashboard/service-to-do",
+                element: <PrivateRoute>
+                    <ServiceToDo />
                 </PrivateRoute>,
             },
         ],

@@ -6,17 +6,17 @@
 
 @layer base {
     :root {
-        --text-50: #fce8e9;
-        --text-100: #fad1d4;
-        --text-200: #f5a3a9;
-        --text-300: #f0757d;
-        --text-400: #eb4752;
-        --text-500: #e61927;
-        --text-600: #b8141f;
-        --text-700: #8a0f17;
-        --text-800: #5c0a10;
-        --text-900: #2e0508;
-        --text-950: #170304;
+        --text-50: #f2f2f2;
+        --text-100: #e6e6e6;
+        --text-200: #cccccc;
+        --text-300: #b3b3b3;
+        --text-400: #999999;
+        --text-500: #808080;
+        --text-600: #666666;
+        --text-700: #4d4d4d;
+        --text-800: #333333;
+        --text-900: #1a1a1a;
+        --text-950: #0d0d0d;
 
         --background-50: #f2f2f2;
         --background-100: #e6e6e6;
@@ -69,17 +69,17 @@
     }
 
     .dark {
-        --text-50: #0f0a0a;
-        --text-100: #1f1414;
-        --text-200: #3d2929;
-        --text-300: #5c3d3d;
-        --text-400: #7a5252;
-        --text-500: #996666;
-        --text-600: #ad8585;
-        --text-700: #c2a3a3;
-        --text-800: #d6c2c2;
-        --text-900: #ebe0e0;
-        --text-950: #f5f0f0;
+        --text-50: #0d0d0d;
+        --text-100: #1a1a1a;
+        --text-200: #333333;
+        --text-300: #4d4d4d;
+        --text-400: #666666;
+        --text-500: #808080;
+        --text-600: #999999;
+        --text-700: #b3b3b3;
+        --text-800: #cccccc;
+        --text-900: #e6e6e6;
+        --text-950: #f2f2f2;
 
         --background-50: #0d0d0d;
         --background-100: #1a1a1a;
@@ -141,7 +141,7 @@ h1 {
 }
 
 body {
-    color: var(--text-950);
+    color: var(--text-900);
     background: var(--background-50);
     font-family: "Poppins", sans-serif;
 }
