@@ -36,7 +36,7 @@ const Footer = () => {
                         {/* Address */ }
                         <div className="flex">
                             <p className="mr-1 text-gray-500">Address:</p>
-                            <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" aria-label="Our address" title="Our address" className="transition-colors duration-300 hover:text-primary-700">Gulshan, Dhaka</a>
+                            <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" aria-label="Our address" title="Our address" className="transition-colors duration-300 hover:text-primary-700">Mirpur, Dhaka</a>
                         </div>
                     </div>
 
