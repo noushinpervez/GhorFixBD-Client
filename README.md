@@ -1,7 +1,7 @@
 # GhorFixBD
 
 ## Live Site URL
-[GhorFixBD](https://ghor-fix-bd.netlify.app/)
+[GhorFixBD](https://ghorfixbd.netlify.app/)
 
 ## Category
 Home Repair Services
@@ -23,7 +23,7 @@ Home Repair Services
    - Status tracking of booked services with options to update status.
 
 4. **Dynamic Content**:
-   - Dynamic page titles based on routes for better SEO and user experience.
+   - Dynamic page titles based on routes for better user experience.
    - Responsive design ensuring optimal viewing experience across devices (mobile, tablet, and desktop).
    - Light and dark theme toggle for user preference.
 
