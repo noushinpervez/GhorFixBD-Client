@@ -18,7 +18,7 @@ const ManageService = () => {
 
     useEffect(() => {
         fetchServices();
-    });
+    }, []);
 
     const fetchServices = async () => {
         try {
