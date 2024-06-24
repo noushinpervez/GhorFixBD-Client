@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
+    const dropdownRef = useRef(null);
     const { logout, user } = useAuth();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -25,6 +26,24 @@ const Header = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsDropdownOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isDropdownOpen) {
+            document.addEventListener('click', handleClickOutside);
+        } else {
+            document.removeEventListener('click', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isDropdownOpen]);
+
     const activeLinkStyle = {
         transition: "all 0.3s ease-in-out",
         color: "var(--secondart-800)",
@@ -32,6 +51,25 @@ const Header = () => {
         outline: "none",
         borderWidth: "1px",
         borderColor: "var(--secondary-500)",
+    };
+
+    // toggle theme
+    const [theme, setTheme] = useState(() => {
+        const storedTheme = localStorage.getItem("theme");
+        return storedTheme ? storedTheme : "light";
+    });
+
+    useEffect(() => {
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const handleThemeSwitch = () => {
+        setTheme(theme === "dark" ? "light" : "dark");
     };
 
     return (
@@ -45,8 +83,19 @@ const Header = () => {
                 </div>
             </Link>
 
-            {/* Mobile menu button and user icon */ }
+            {/* Mobile menu button, user icon and theme switch */ }
             <div className="lg:hidden flex items-center gap-2">
+                <button onClick={ handleThemeSwitch }
+                    className="h-12 w-12 rounded-full p-2 hover:bg-primary-200">
+                    <svg className={ `fill-violet-700 ${theme === "light" ? "block" : "hidden"}` } fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg className={ `fill-yellow-500 ${theme === "dark" ? "block" : "hidden"}` } fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                            fillRule="evenodd" clipRule="evenodd"></path>
+                    </svg>
+                </button>
                 <div className={ `group relative ${user ? "block" : "hidden"}` }>
                     <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-secondary-500" src={ user?.photoURL || "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" } />
                     <div className="absolute top-0 flex flex-col items-center hidden mt-8 group-hover:flex">
@@ -67,7 +116,7 @@ const Header = () => {
                 {/* Menu items */ }
                 <li><NavLink to="/" className="text-sm hover:text-gray-500 px-3 py-1 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Home</NavLink></li>
                 <li><NavLink to="/services" className="text-sm hover:text-gray-500 px-3 py-1 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Services</NavLink></li>
-                <div className="relative">
+                <div className="relative" ref={ dropdownRef }>
                     <button onClick={ toggleDropdown } className={ `text-sm hover:text-gray-500 focus:text-secondary-600 px-3 py-1 rounded-full flex justify-center items-center gap-1 ${user ? "block" : "hidden"}` }>Dashboard<span className="material-symbols-outlined">
                         chevron_right
                     </span></button>
@@ -92,8 +141,20 @@ const Header = () => {
                 </div>
             </ul>
 
-            {/* User icon and login/logout button */ }
+            {/* Theme switch, user icon and login/logout button */ }
             <div className="hidden lg:flex gap-4 justify-center items-center">
+                <button onClick={ handleThemeSwitch }
+                    className="h-12 w-12 rounded-full p-2 hover:bg-primary-200">
+                    <svg className={ `fill-violet-700 ${theme === "light" ? "block" : "hidden"}` } fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg className={ `fill-yellow-500 ${theme === "dark" ? "block" : "hidden"}` } fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                            fillRule="evenodd" clipRule="evenodd"></path>
+                    </svg>
+                </button>
+
                 <div className={ `group relative ${user ? "block" : "hidden"}` }>
                     <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-secondary-500" src={ user?.photoURL || "https://www.uab.edu/humanresources/home/images/RecordsAdmin/RecordsIcon_Oracle_SelfService.png" } />
                     <div className="absolute top-0 flex-col items-center hidden mt-8 group-hover:flex">

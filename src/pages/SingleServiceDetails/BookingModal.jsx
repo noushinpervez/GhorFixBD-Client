@@ -57,7 +57,7 @@ const BookingModal = ({ service, isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center">
-            <div className="bg-white p-4 md:p-8 rounded-lg shadow-lg w-full max-w-md">
+            <div className="bg-background-50 p-4 md:p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-xl font-bold mb-4">Book Service</h2>
 
                 {/* Service Name */ }
@@ -112,7 +112,7 @@ const BookingModal = ({ service, isOpen, onClose }) => {
                 {/* Purchase Button */ }
                 <button
                     onClick={ handlePurchase }
-                    className="w-full bg-primary-900 text-white font-bold py-2 px-4 rounded mt-4"
+                    className="w-full bg-primary-900 text-text-50 font-bold py-2 px-4 rounded mt-4"
                 >
                     Purchase
                 </button>
@@ -120,7 +120,7 @@ const BookingModal = ({ service, isOpen, onClose }) => {
                 {/* Cancel Button */ }
                 <button
                     onClick={ onClose }
-                    className="mt-2 w-full bg-gray-600 text-white font-bold py-2 px-4 rounded"
+                    className="mt-2 w-full bg-gray-600 text-text-950 font-bold py-2 px-4 rounded"
                 >
                     Cancel
                 </button>

@@ -4,11 +4,13 @@ import Toast from "../../../components/Toast";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Loading from "../../../components/Loading";
 
 const ServiceToDo = () => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const [bookedServices, setBookedServices] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetchBookedServices();
@@ -17,6 +19,7 @@ const ServiceToDo = () => {
     const fetchBookedServices = async () => {
         try {
             const response = await axiosPublic.get(`/booked-services/provider/${user.email}`);
+            setLoading(true);
             setBookedServices(response.data);
         } catch (error) {
             Toast.fire({
@@ -24,6 +27,7 @@ const ServiceToDo = () => {
                 title: `Failed to fetch booked services: ${error.message}`
             });
         }
+        setLoading(false);
     };
 
     const handleUpdateStatus = async (serviceId, newStatus) => {
@@ -52,6 +56,10 @@ const ServiceToDo = () => {
         await handleUpdateStatus(serviceId, newStatus);
     };
 
+    if (loading) {
+        return <Loading></Loading>;
+    }
+
     return (
         <>
             <Helmet>
@@ -62,22 +70,24 @@ const ServiceToDo = () => {
                 <Title title="Service To-Do" />
                 { bookedServices.length === 0 ? (
                     <div className="text-red-400 text-2xl font-semibold min-h-[20vh] flex items-center justify-center">
-                        No booked services found for you.
+                        No services has been booked for you.
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         { bookedServices.map(service => (
                             <div key={ service._id } className="border p-4 rounded-3xl border-primary-200">
                                 <h3 className="text-xl font-bold mt-2">{ service.serviceName }</h3>
-                                <p className="text-sm mt-1 text-gray-500 text-ellipsis line-clamp-1">
-                                    Description: { service.description }
-                                </p>
                                 <p className="text-secondary-700 font-semibold text-lg mt-2">Price: { service.price }</p>
-                                <p className="mt-2 text-gray-500 text-sm flex gap-1 text-ellipsis line-clamp-1 items-center">
-                                    <span className="material-symbols-outlined">where_to_vote</span>
-                                    Service Area: { service.serviceArea }
+                                <p className="mt-2 text-sm text-gray-500">
+                                    Booked by: <span className="italic text-text-700">{ service.userName }</span>
                                 </p>
-                                <div className="mb-4">
+                                <p className="text-sm mt-1 text-gray-500">
+                                    Service Taking Date: <span className="italic text-text-700">{ service.serviceDate }</span>
+                                </p>
+                                <p className="mt-1 text-gray-500 text-sm text-ellipsis line-clamp-1 items-center">
+                                    Special Instructions: <span className="italic text-text-700">{ service.specialInstructions }</span>
+                                </p>
+                                <div className="mb-2 mt-4">
                                     <label className="block text-sm font-medium text-gray-500">Service Status</label>
                                     <select
                                         value={ service.status }

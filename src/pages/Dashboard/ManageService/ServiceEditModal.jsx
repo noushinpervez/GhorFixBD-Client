@@ -44,7 +44,7 @@ const ServiceEditModal = ({ service, isOpen, onClose }) => {
         <>
             { isOpen && (
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <div className="bg-background-50 p-8 rounded-lg shadow-lg">
                         <h2 className="text-xl font-bold mb-4">Edit Service</h2>
                         <form onSubmit={ handleUpdateService }>
                             <FormInput
@@ -76,8 +76,8 @@ const ServiceEditModal = ({ service, isOpen, onClose }) => {
                                 name="serviceArea"
                                 required
                             />
-                            <button type="submit" className="w-full bg-primary-900 text-white font-bold py-2 px-4 rounded mt-4">Save Changes</button>
-                            <button type="button" onClick={ onClose } className="mt-2 w-full bg-gray-600 text-white font-bold py-2 px-4 rounded">Cancel</button>
+                            <button type="submit" className="w-full bg-primary-900 text-text-50 font-bold py-2 px-4 rounded mt-4">Save Changes</button>
+                            <button type="button" onClick={ onClose } className="mt-2 w-full bg-gray-600 text-text-950 font-bold py-2 px-4 rounded">Cancel</button>
                         </form>
                     </div>
                 </div>
