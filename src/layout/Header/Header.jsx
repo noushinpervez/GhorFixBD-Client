@@ -121,7 +121,7 @@ const Header = () => {
                         chevron_right
                     </span></button>
                     { isDropdownOpen && (
-                        <ul className={ `absolute -top-2 left-full w-80 bg-secondary-50 border border-gray-200 rounded-3xl shadow-lg z-50 ${user ? "block" : "hidden"}` }>
+                        <ul className={ `absolute -top-2 left-full w-80 bg-secondary-50 border border-gray-200 rounded-2xl shadow-lg z-50 ${user ? "block" : "hidden"}` }>
                             <div className="flex flex-wrap">
                                 <li className="w-1/2">
                                     <NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink>

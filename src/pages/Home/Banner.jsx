@@ -39,7 +39,7 @@ const Banner = () => {
                         <div className="max-w-full flex-shrink-0 text-center lg:mx-0 lg:max-w-3xl lg:pt-8">
                             <h1 className="lg:text-5xl font-bold tracking-tight text-white text-2xl">
                                 Home Repair Services
-                                <span className="text-secondary-700"> Near You</span>
+                                <span className="text-secondary-600"> Near You</span>
                             </h1>
                             <p className="mt-6 lg:text-lg lg:leading-8 text-gray-300">
                                 Receive no-obligation quotes from reviewed, rated & trusted Handymen in minutes.
@@ -48,7 +48,7 @@ const Banner = () => {
                                 {
                                     user ? <></> :
                                         <a href="/signup"
-                                            className="rounded-full bg-secondary-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-secondary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
+                                            className="rounded-full bg-secondary-500 px-4 py-3 text-sm font-semibold text-white shadow-sm"
                                             rel="noreferrer">Sign up →
                                         </a>
                                 }
@@ -71,7 +71,7 @@ const Banner = () => {
                         <div className="max-w-full flex-shrink-0 text-center lg:mx-0 lg:max-w-3xl lg:pt-8">
                             <h1 className="lg:text-5xl font-bold tracking-tight text-white text-2xl">
                                 Your Personal
-                                <span className="text-secondary-700"> Assistant</span>
+                                <span className="text-secondary-600"> Assistant</span>
                             </h1>
                             <p className="mt-6 lg:text-lg lg:leading-8 text-gray-300">
                                 One-stop solution for your services. Order any service, anytime.
@@ -93,7 +93,7 @@ const Banner = () => {
                         <div className="max-w-full flex-shrink-0 text-center lg:mx-0 lg:max-w-3xl lg:pt-8">
                             <h1 className="lg:text-5xl font-bold tracking-tight text-white text-2xl">
                                 Solution to your
-                                <span className="text-secondary-700"> Needs</span>
+                                <span className="text-secondary-600"> Needs</span>
                             </h1>
                             <p className="mt-6 lg:text-lg lg:leading-8 text-gray-300">
                                 Any Service, Any Time, Anywhere.
