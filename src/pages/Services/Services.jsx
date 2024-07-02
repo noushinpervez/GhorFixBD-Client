@@ -37,6 +37,8 @@ const Services = () => {
         service.serviceName.toLowerCase().includes(searchTerm)
     );
 
+    const servicesToDisplay = searchTerm ? filteredServices : data;
+
     return (
         <>
             <Helmet>
@@ -50,7 +52,8 @@ const Services = () => {
                 <form
                     onSubmit={ handleSubmit }
                     className="mb-10 mx-auto max-w-xl py-4 px-6 rounded-full bg-primary-100 focus-within:border flex focus-within:border-primary-300 gap-2"
-                ><span className="material-symbols-outlined">
+                >
+                    <span className="material-symbols-outlined">
                         search
                     </span>
                     <input
@@ -64,16 +67,16 @@ const Services = () => {
                 </form>
 
                 <div className="md:px-3 my-6 flex lg:px-6">
-                    <h1 className="text-2xl">Total Services: { data.length }</h1>
+                    <p className="text-2xl">Services Found: { servicesToDisplay.length }</p>
                 </div>
 
-                { filteredServices.length === 0 ? (
-                    <div className="text-red-400 text-2xl font-semibold flex items-center justify-center">
+                { filteredServices.length === 0 && searchTerm ? (
+                    <div className="text-red-400 text-2xl font-semibold flex items-center justify-center my-16">
                         No services found.
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 gap-4 md:px-3 lg:px-6 mb-6">
-                        { filteredServices.map((service) => (
+                        { servicesToDisplay.map((service) => (
                             <ServicesCard
                                 key={ service._id }
                                 service={ service }

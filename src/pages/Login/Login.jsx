@@ -51,8 +51,8 @@ const Login = () => {
             <Helmet>
                 <title>GhorFix | Sign in</title>
             </Helmet>
-            <div className="min-h-screen bg-background flex justify-center">
-                <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-3xl flex justify-center flex-1 flex-row-reverse bg-accent-100">
+            <div className="min-h-screen bg-background flex justify-center mx-4 mb-16">
+                <div className="max-w-screen-xl m-0 sm:m-10 shadow rounded-3xl flex justify-center flex-1 flex-row-reverse bg-accent-100">
                     <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 my-auto">
                         <div className="flex justify-center gap-2 items-center">
                             <img src="./logo.png"

@@ -11,7 +11,7 @@ const BookingModal = ({ service, isOpen, onClose }) => {
     const [serviceDate, setServiceDate] = useState("");
     const [specialInstructions, setSpecialInstructions] = useState("");
 
-    const handlePurchase = async (e) => {
+    const handleBook = async (e) => {
         e.preventDefault();
         
         if (!serviceDate || !specialInstructions) {
@@ -109,12 +109,12 @@ const BookingModal = ({ service, isOpen, onClose }) => {
                     placeholder="Select a date"
                 />
 
-                {/* Purchase Button */ }
+                {/* Book Button */ }
                 <button
-                    onClick={ handlePurchase }
+                    onClick={ handleBook }
                     className="w-full bg-primary-900 text-text-50 font-bold py-2 px-4 rounded mt-4"
                 >
-                    Purchase
+                    Book
                 </button>
 
                 {/* Cancel Button */ }

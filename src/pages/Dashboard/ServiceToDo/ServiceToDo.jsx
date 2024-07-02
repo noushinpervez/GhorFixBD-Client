@@ -32,7 +32,7 @@ const ServiceToDo = () => {
 
     const handleUpdateStatus = async (serviceId, newStatus) => {
         try {
-            await axiosPublic.put(`/booked-services/${serviceId}/update-status`, { status: newStatus });
+            await axiosPublic.put(`/booked-services/${serviceId}/update-status`, { serviceStatus: newStatus });
             Toast.fire({
                 icon: "success",
                 title: "Service status updated successfully"
@@ -40,7 +40,7 @@ const ServiceToDo = () => {
 
             setBookedServices(prevServices =>
                 prevServices.map(service =>
-                    service._id === serviceId ? { ...service, status: newStatus } : service
+                    service._id === serviceId ? { ...service, serviceStatus: newStatus } : service
                 )
             );
         } catch (error) {
@@ -70,7 +70,7 @@ const ServiceToDo = () => {
                 <Title title="Service To-Do" />
                 { bookedServices.length === 0 ? (
                     <div className="text-red-400 text-2xl font-semibold min-h-[20vh] flex items-center justify-center">
-                        No services has been booked for you.
+                        No services have been booked for you.
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -90,7 +90,7 @@ const ServiceToDo = () => {
                                 <div className="mb-2 mt-4">
                                     <label className="block text-sm font-medium text-gray-500">Service Status</label>
                                     <select
-                                        value={ service.status }
+                                        value={ service.serviceStatus }
                                         onChange={ (event) => handleStatusChange(event, service._id) }
                                         className="mt-1 block w-full border border-gray-500 rounded shadow focus:border-0 focus:outline-0 focus:ring focus:ring-secondary-700 p-2 bg-secondary-50 text-sm"
                                     >

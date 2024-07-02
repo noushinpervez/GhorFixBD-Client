@@ -13,7 +13,7 @@ const Feedback = () => {
             <div className="container px-5 py-24 mx-auto flex">
                 <div className="lg:w-1/3 md:w-1/2 bg-background-50 shadow-md rounded-3xl p-6 lg:p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 text-text-950">
                     <h2 className="text-lg mb-1 font-medium title-font">Feedback</h2>
-                    <p className="leading-relaxed mb-5">Your Opinion Shapes Our Service: Share Your Home Repair Experience!</p>
+                    <p className="leading-relaxed mb-5 text-gray-500">Your Opinion Shapes Our Service: Share Your Home Repair Experience!</p>
                     <div className="relative mb-4">
                         <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
                         <input

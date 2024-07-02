@@ -136,12 +136,12 @@ html {
     scroll-behavior: smooth;
 }
 
-h1 {
-    font-family: "Croissant One", serif;
-}
-
 body {
     color: var(--text-900);
     background: var(--background-50);
     font-family: "Poppins", sans-serif;
+}
+
+h1 {
+    font-family: "Croissant One", serif;
 }

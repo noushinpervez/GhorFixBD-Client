@@ -9,7 +9,7 @@ const Card = ({ service }) => {
             {/* Service Image */ }
             <img className="h-48 object-cover rounded-2xl" src={ imgURL } alt={ serviceName } />
 
-            <div className="flex flex-col gap-2 lg:w-5/6">
+            <div className="flex flex-col gap-2 md:w-5/6">
                 {/* Service Name */ }
                 <h3 className="font-bold text-xl">{ serviceName }</h3>
 

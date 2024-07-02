@@ -56,7 +56,7 @@ const SingleServiceDetails = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="md:flex-1 px-4">
+                    <div className="md:flex-1 px-6">
                         <h2 className="text-2xl font-bold text-text-900 mb-2">{ service.serviceName }</h2>
                         <p className="text-gray-600 mb-4 flex items-center gap-2"><span className="material-symbols-outlined">
                             pin_drop

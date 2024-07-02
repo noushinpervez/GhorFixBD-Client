@@ -3,10 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
-    const dropdownRef = useRef(null);
+    const desktopDropdownRef = useRef(null);
+    const mobileDropdownRef = useRef(null);
     const { logout, user } = useAuth();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
+    const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -22,18 +24,25 @@ const Header = () => {
             .catch(error => console.log(error));
     };
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const toggleDesktopDropdown = () => {
+        setIsDesktopDropdownOpen(!isDesktopDropdownOpen);
+    };
+
+    const toggleMobileDropdown = () => {
+        setIsMobileDropdownOpen(!isMobileDropdownOpen);
     };
 
     const handleClickOutside = (event) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-            setIsDropdownOpen(false);
+        if (desktopDropdownRef.current && !desktopDropdownRef.current.contains(event.target)) {
+            setIsDesktopDropdownOpen(false);
+        }
+        if (mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target)) {
+            setIsMobileDropdownOpen(false);
         }
     };
 
     useEffect(() => {
-        if (isDropdownOpen) {
+        if (isDesktopDropdownOpen || isMobileDropdownOpen) {
             document.addEventListener('click', handleClickOutside);
         } else {
             document.removeEventListener('click', handleClickOutside);
@@ -42,7 +51,7 @@ const Header = () => {
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [isDropdownOpen]);
+    }, [isDesktopDropdownOpen, isMobileDropdownOpen]);
 
     const activeLinkStyle = {
         transition: "all 0.3s ease-in-out",
@@ -77,16 +86,15 @@ const Header = () => {
             {/* Logo */ }
             <Link to="/">
                 <div className="flex justify-center gap-2 items-center">
-                    <img src="./logo.png"
-                        className="w-8" />
+                    <img src="/logo.png" className="w-8" />
                     <h1 className="text-2xl font-extrabold lg:block hidden">GhorFix</h1>
                 </div>
             </Link>
 
             {/* Mobile menu button, user icon and theme switch */ }
-            <div className="lg:hidden flex items-center gap-2">
+            <div className="lg:hidden flex items-center">
                 <button onClick={ handleThemeSwitch }
-                    className="h-12 w-12 rounded-full p-2 hover:bg-primary-200">
+                    className="h-10 w-10 rounded-full p-2 hover:bg-primary-200 mr-4">
                     <svg className={ `fill-violet-700 ${theme === "light" ? "block" : "hidden"}` } fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
@@ -96,7 +104,7 @@ const Header = () => {
                             fillRule="evenodd" clipRule="evenodd"></path>
                     </svg>
                 </button>
-                <div className={ `group relative ${user ? "block" : "hidden"}` }>
+                <div className={ `group relative mr-2 ${user ? "block" : "hidden"}` }>
                     <img alt={ user?.displayName } className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-secondary-500" src={ user?.photoURL || "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" } />
                     <div className="absolute top-0 flex flex-col items-center hidden mt-8 group-hover:flex">
                         <div className="w-3 h-3 -mb-2 rotate-45 bg-black"></div>
@@ -116,15 +124,15 @@ const Header = () => {
                 {/* Menu items */ }
                 <li><NavLink to="/" className="text-sm hover:text-gray-500 px-3 py-1 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Home</NavLink></li>
                 <li><NavLink to="/services" className="text-sm hover:text-gray-500 px-3 py-1 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Services</NavLink></li>
-                <div className="relative" ref={ dropdownRef }>
-                    <button onClick={ toggleDropdown } className={ `text-sm hover:text-gray-500 focus:text-secondary-600 px-3 py-1 rounded-full flex justify-center items-center gap-1 ${user ? "block" : "hidden"}` }>Dashboard<span className="material-symbols-outlined">
+                <div className="relative" ref={ desktopDropdownRef }>
+                    <button onClick={ toggleDesktopDropdown } className={ `text-sm hover:text-gray-500 focus:text-secondary-600 px-3 py-1 rounded-full flex justify-center items-center gap-1 ${user ? "block" : "hidden"}` }>Dashboard<span className="material-symbols-outlined">
                         chevron_right
                     </span></button>
-                    { isDropdownOpen && (
+                    { isDesktopDropdownOpen && (
                         <ul className={ `absolute -top-2 left-full w-80 bg-secondary-50 border border-gray-200 rounded-2xl shadow-lg z-50 ${user ? "block" : "hidden"}` }>
                             <div className="flex flex-wrap">
                                 <li className="w-1/2">
-                                    <NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink>
+                                    <NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text                                    -gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink>
                                 </li>
                                 <li className="w-1/2">
                                     <NavLink to="/dashboard/manage-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Manage Service</NavLink>
@@ -177,7 +185,7 @@ const Header = () => {
                     <div className="flex items-center mb-8">
                         {/* Logo for mobile menu */ }
                         <Link className="flex justify-center gap-2 items-center mr-auto text-3xl font-bold leading-none" to="/">
-                            <img src="./logo.png" className="w-8" />
+                            <img src="/logo.png" className="w-8" />
                             <h1 className="text-2xl font-extrabold">GhorFix</h1>
                         </Link>
                         {/* Close mobile menu button */ }
@@ -193,10 +201,10 @@ const Header = () => {
                             <li className="mb-1">
                                 <NavLink className="block p-4 text-sm font-semibold text-gray-500 hover:text-secondary-600 rounded-full" to="/" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Home</NavLink>
                                 <NavLink className="block p-4 text-sm font-semibold text-gray-500 hover:text-secondary-600 rounded-full" to="/services" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Services</NavLink>
-                                <NavLink className={ `p-4 text-sm font-semibold text-gray-500 hover:text-secondary-600 focus:text-secondary-600 rounded-full flex items-center gap-1 ${user ? "block" : "hidden"}` } onClick={ toggleDropdown }>Dashboard<span className="material-symbols-outlined">
+                                <li className={ `p-4 text-sm font-semibold text-gray-500 hover:text-secondary-600 focus:text-secondary-600 rounded-full flex items-center gap-1 ${user ? "block" : "hidden"}` } onClick={ toggleMobileDropdown } ref={ mobileDropdownRef }>Dashboard<span className="material-symbols-outlined">
                                     chevron_right
-                                </span></NavLink>
-                                { isDropdownOpen && (
+                                </span></li>
+                                { isMobileDropdownOpen && (
                                     <ul className={ `${user ? "block" : "hidden"}` }>
                                         <li><NavLink to="/dashboard/add-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Add Service</NavLink></li>
                                         <li><NavLink to="/dashboard/manage-service" className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary-300 rounded-full" style={ ({ isActive }) => (isActive ? activeLinkStyle : undefined) }>Manage Service</NavLink></li>
@@ -219,7 +227,7 @@ const Header = () => {
                     </div>
                 </nav>
             </div>
-        </nav >
+        </nav>
     );
 };
 
