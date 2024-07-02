@@ -56,4 +56,4 @@ To run the project locally, follow these steps:
 5. **Access the application:**
     The application will run on `http://localhost:5173`.
 
-Follow these instructions to set up and locally run the client-side of Scholarship Portal BD to explore its features and functionalities.
+Follow these instructions to set up and locally run the client-side of GhorFixBD to explore its features and functionalities.
